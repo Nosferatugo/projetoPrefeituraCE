@@ -5,12 +5,17 @@
  */
 package br.com.controleDeEstoque.telas;
 
+import br.com.controleDeEstoque.model.Produto;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author HugoNathan
  */
 public class TelaSaídaProdutos extends javax.swing.JFrame {
 
+     public static List<Produto> listaItemProdutos = new ArrayList<>();
     /**
      * Creates new form TelaSaídaProdutos
      */

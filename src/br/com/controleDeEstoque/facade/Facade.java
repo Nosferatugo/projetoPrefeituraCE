@@ -191,9 +191,15 @@ public class Facade implements IFacade {
     }
     
     @Override
-    public void realizarCadastroProduto(Long id, String descricao, TipoProduto tipoProduto, ComposicaoProduto composicaoProduto,String atacado ,String varejo,String compraUnidade,String quantidade,Fornecedor f) throws ExceptionDAO {
-        produtoDao.realizarCadastro(id, descricao, tipoProduto, composicaoProduto, compraUnidade, quantidade, f);
+    public void realizarCadastroProduto(Long id, String descricao, String tipoProduto, String composicaoProduto,int quantidade,Fornecedor f) throws ExceptionDAO {
+        produtoDao.realizarCadastro(id, descricao, tipoProduto, composicaoProduto,quantidade, f);
     }
+    
+    @Override
+    public Produto addItemProdutoDoEstoque(Long ip, String tipoProduto, String descricao, String composicao, int quantidade,Fornecedor f) throws ExceptionDAO {
+        return produtoDao.addItemProdutoDoEstoque(ip, tipoProduto, descricao, composicao,quantidade, f);
+    }
+
 
     //-------------------------Funcionario
     @Override

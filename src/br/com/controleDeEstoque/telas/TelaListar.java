@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.controleDeEstoque.gui;
+package br.com.controleDeEstoque.telas;
 
 import br.com.controleDeEstoque.commom.exception.BusinessException;
 import br.com.controleDeEstoque.commom.exception.ExceptionDAO;
+import br.com.controleDeEstoque.facade.Facade;
+import br.com.controleDeEstoque.gui.AddProdutoDoEstoque;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,11 +19,12 @@ import javax.swing.JOptionPane;
  *
  * @author Onismar
  */
-public class Listar<T> extends javax.swing.JDialog {
+public class TelaListar<T> extends javax.swing.JDialog {
 
   public static String controle = "";
+  Facade facade = Facade.getInstance();
 
-    public Listar(java.awt.Frame parent, boolean modal) {
+    public TelaListar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -148,6 +151,45 @@ public class Listar<T> extends javax.swing.JDialog {
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
 
+        if (controle.equals("escola")) {
+
+//            try {
+//                RealizarVenda rv = null;
+//                rv.c = facade.getByIdCliente(recuperaId());
+//                
+//            } catch (BusinessException ex) {
+//                Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (ExceptionDAO ex) {
+//                Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+
+        }
+        if (controle.equals("fornecedor")){
+            
+            TelaCadastrarProdutos cp = null;
+            try {
+                cp.f = facade.getByIdFornecedor(recuperaId());
+            } catch (ExceptionDAO ex) {
+                Logger.getLogger(TelaListar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
+        if (controle.equals("produto")){
+            
+            TelaAddProdutoDoEstoque add = null;
+            try {
+                add.ip = facade.getByIdProduto(recuperaId());
+                
+            } catch (ExceptionDAO ex) {
+                Logger.getLogger(TelaListar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                   
+            
+        }
+        
+        
+        this.dispose();
         
         
      
@@ -169,7 +211,7 @@ public class Listar<T> extends javax.swing.JDialog {
         if (controle.equals("funcionario")){
           
         }
-        if (controle.equals("itemProduto")){
+        if (controle.equals("produto")){
            
           
         }
@@ -252,20 +294,21 @@ public class Listar<T> extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Listar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaListar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Listar dialog = new Listar(new javax.swing.JFrame(), true);
+                TelaListar dialog = new TelaListar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

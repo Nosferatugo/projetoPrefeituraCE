@@ -29,6 +29,8 @@ public interface IProdutoBusiness {
 
     public List<Produto> getProdutoPorNome(String nome) throws ExceptionDAO;
     
-    public void realizarCadastro(Long id, String descricao, TipoProduto tipoProduto, ComposicaoProduto composicaoProduto, String compraUnidade, String quantidade, Fornecedor f) throws ExceptionDAO;
+    public void realizarCadastro(Long id, String descricao, String tipoProduto, String composicaoProduto, int quantidade, Fornecedor f) throws ExceptionDAO;
 
-}
+    public Produto addItemProdutoDoEstoque(Long ip, String tipoProduto, String descricao, String composicao,int quantidade,Fornecedor f)throws ExceptionDAO;
+
+    }

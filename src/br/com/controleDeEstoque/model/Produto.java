@@ -24,8 +24,10 @@ public class Produto implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String descricao;
-    private TipoProduto tipoProduto;
-    private ComposicaoProduto composicaoProduto;
+    private String tipoProduto;
+    private String composicaoProduto;
+    private Fornecedor fornecedor;
+    private int quantidade;
     
 
     public Long getId() {
@@ -44,24 +46,40 @@ public class Produto implements Serializable {
         this.descricao = descricao;
     }
 
-    public TipoProduto getTipoProduto() {
+    public String getTipoProduto() {
         return tipoProduto;
     }
 
-    public void setTipoProduto(TipoProduto tipoProduto) {
+    public void setTipoProduto(String tipoProduto) {
         this.tipoProduto = tipoProduto;
     }
 
-    public ComposicaoProduto getComposicaoProduto() {
+    public String getComposicaoProduto() {
         return composicaoProduto;
     }
 
-    public void setComposicaoProduto(ComposicaoProduto composicaoProduto) {
+    public void setComposicaoProduto(String composicaoProduto) {
         this.composicaoProduto = composicaoProduto;
     }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
     
-    
-    
+
+   
 
     @Override
     public int hashCode() {

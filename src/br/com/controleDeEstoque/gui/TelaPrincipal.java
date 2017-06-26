@@ -6,6 +6,7 @@
 package br.com.controleDeEstoque.gui;
 
 
+import br.com.controleDeEstoque.telas.TelaListar;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
@@ -36,10 +37,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     private void listar(String controle){
         
-        Listar.controle = controle;
-        Listar l = new Listar(null, true);
-        Listar.jButtonSelecionar.setEnabled(false);
-        Listar.jButtonRemover.setEnabled(false);
+        TelaListar.controle = controle;
+        TelaListar l = new TelaListar(null, true);
+        TelaListar.jButtonSelecionar.setEnabled(false);
+        TelaListar.jButtonRemover.setEnabled(false);
         l.setVisible(true);
         
     }

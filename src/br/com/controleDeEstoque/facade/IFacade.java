@@ -75,8 +75,10 @@ public interface IFacade {
 
     public List<Produto> getProdutoPorNome(String nome) throws ExceptionDAO;
     
-    public void realizarCadastroProduto(Long id, String descricao, TipoProduto tipoProduto, ComposicaoProduto composicaoProduto,String atacado ,String varejo,String compraUnidade,String quantidade, Fornecedor f) throws ExceptionDAO;
+    public void realizarCadastroProduto(Long id, String descricao, String tipoProduto, String composicaoProduto,int quantidade,Fornecedor f) throws ExceptionDAO;
 
+    public Produto addItemProdutoDoEstoque(Long ip, String tipoProduto, String descricao, String composicao, int quantidade,Fornecedor f) throws ExceptionDAO;
+       
 
     //Funcionário
     public void salvarFuncionario(Funcionario f) throws BusinessException, ExceptionDAO;

@@ -63,7 +63,7 @@ public class ProdutoBusiness implements IProdutoBusiness {
     }
 
     @Override
-    public void realizarCadastro(Long id, String descricao, TipoProduto tipoProduto, ComposicaoProduto composicaoProduto, String compraUnidade, String quantidade, Fornecedor f) throws ExceptionDAO {
+    public void realizarCadastro(Long id, String descricao, String tipoProduto, String composicaoProduto, int quantidade, Fornecedor f) throws ExceptionDAO {
 
         UtilitariosStrategy utilitarios = new UtilitariosStrategy();
         Produto p = new Produto();
@@ -71,6 +71,7 @@ public class ProdutoBusiness implements IProdutoBusiness {
         p.setComposicaoProduto(composicaoProduto);
         p.setTipoProduto(tipoProduto);
         p.setDescricao(descricao);
+        p.setFornecedor(f);
 
         if (id == null) {
             salvar(p);
@@ -83,5 +84,21 @@ public class ProdutoBusiness implements IProdutoBusiness {
         }
 
     }
+    @Override
+    public Produto addItemProdutoDoEstoque(Long ip, String tipoProduto, String descricao, String composicao, int quantidade,Fornecedor f)  {
+
+        Produto p = new Produto();
+
+        p.setId(ip);
+        p.setTipoProduto(tipoProduto);
+        p.setComposicaoProduto(composicao);
+        p.setDescricao(descricao);
+        p.setQuantidade(quantidade);
+        p.setFornecedor(f);
+        return p;
+
+    }
+
+   
 
 }
