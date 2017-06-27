@@ -63,17 +63,28 @@ public class ProdutoBusiness implements IProdutoBusiness {
     }
 
     @Override
-    public void realizarCadastro(Long id, String descricao, String tipoProduto, String composicaoProduto, int quantidade, Fornecedor f) throws ExceptionDAO {
+    public void realizarCadastro(Long id, String nomeProduto, Calendar dataValidade,
+            String unidadeMedida, int reposicao, int quantidadeInicial, int quantidadeFinal,
+            Long codigoDeBarras, String tipoProduto, String composicaoProduto,
+            Fornecedor f) throws ExceptionDAO {
 
         UtilitariosStrategy utilitarios = new UtilitariosStrategy();
         Produto p = new Produto();
         p.setId(id);
+        p.setNomeProduto(nomeProduto);
+        p.setDataValidade(dataValidade);
+        p.setDataRegistro(Calendar.getInstance());
+        p.setUnidadeMedida(unidadeMedida);
+        p.setReposicao(reposicao);
+        p.setQuantidadeInicial(quantidadeInicial);
+        p.setQuantidadeFinal(quantidadeFinal);
+        p.setCodigoDeBarras(codigoDeBarras);
         p.setComposicaoProduto(composicaoProduto);
         p.setTipoProduto(tipoProduto);
-        p.setDescricao(descricao);
         p.setFornecedor(f);
 
         if (id == null) {
+             p.setQuantidadeFinal(quantidadeInicial);
             salvar(p);
             JOptionPane.showMessageDialog(null, MensagensUtilStrategy.getValor(MensagensUtilStrategy.MSG_SUCESSO_SALVAR, ""));
 
@@ -84,21 +95,26 @@ public class ProdutoBusiness implements IProdutoBusiness {
         }
 
     }
+
     @Override
-    public Produto addItemProdutoDoEstoque(Long ip, String tipoProduto, String descricao, String composicao, int quantidade,Fornecedor f)  {
+    public Produto addItemProdutoDoEstoque(Long ip, String tipoProduto, String descricao, String composicao, int quantidade, Fornecedor f) {
 
         Produto p = new Produto();
 
         p.setId(ip);
         p.setTipoProduto(tipoProduto);
         p.setComposicaoProduto(composicao);
-        p.setDescricao(descricao);
-        p.setQuantidade(quantidade);
+       // p.setDescricao(descricao);
+        p.setQuantidadeInicial(quantidade);
         p.setFornecedor(f);
         return p;
 
     }
 
-   
+    @Override
+    public Produto getProdutoPorCodigoBarras(int codigo) throws ExceptionDAO {
+       return produtoDao.getProdutoPorCodigoBarras(codigo);
+    }
 
+    
 }

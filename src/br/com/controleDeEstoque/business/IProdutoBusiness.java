@@ -11,6 +11,7 @@ import br.com.controleDeEstoque.enuns.ComposicaoProduto;
 import br.com.controleDeEstoque.enuns.TipoProduto;
 import br.com.controleDeEstoque.model.Fornecedor;
 import br.com.controleDeEstoque.model.Produto;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -29,8 +30,15 @@ public interface IProdutoBusiness {
 
     public List<Produto> getProdutoPorNome(String nome) throws ExceptionDAO;
     
-    public void realizarCadastro(Long id, String descricao, String tipoProduto, String composicaoProduto, int quantidade, Fornecedor f) throws ExceptionDAO;
+    public void realizarCadastro(Long id, String nomeProduto, Calendar dataValidade,
+            String unidadeMedida, int reposicao, int quantidadeInicial, int quantidadeFinal,
+            Long codigoDeBarras, String tipoProduto, String composicaoProduto,
+            Fornecedor f) throws ExceptionDAO;
 
     public Produto addItemProdutoDoEstoque(Long ip, String tipoProduto, String descricao, String composicao,int quantidade,Fornecedor f)throws ExceptionDAO;
 
+    public Produto getProdutoPorCodigoBarras(int codigo) throws ExceptionDAO;
+   
     }
+
+  

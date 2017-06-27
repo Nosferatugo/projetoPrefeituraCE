@@ -82,8 +82,10 @@ public class Funcionario extends Pessoa implements Serializable{
 
     @Override
     public String toString() {
-        return "Funcionario{" + "inscricao=" + inscricao + ", login=" + login + ", senha=" + senha + ", autorizarDesconto=" + autorizarDesconto + ", maxDesconto=" + maxDesconto + '}';
+        return "Funcionario{" + super.toString()+ "inscricao=" + inscricao + ", login=" + login + ", senha=" + senha + ", autorizarDesconto=" + autorizarDesconto + ", maxDesconto=" + maxDesconto + '}';
     }
+
+ 
 
    
     

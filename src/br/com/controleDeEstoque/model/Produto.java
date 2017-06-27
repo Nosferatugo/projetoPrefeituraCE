@@ -8,10 +8,13 @@ package br.com.controleDeEstoque.model;
 import br.com.controleDeEstoque.enuns.ComposicaoProduto;
 import br.com.controleDeEstoque.enuns.TipoProduto;
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -23,12 +26,20 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String descricao;
+    private String nomeProduto;
+    @Temporal(TemporalType.DATE)
+    private Calendar dataValidade;
+     private String unidadeMedida;
+    private int reposicao;
+    private int quantidadeInicial;
+    private int quantidadeFinal;
+    private Long codigoDeBarras;
     private String tipoProduto;
     private String composicaoProduto;
     private Fornecedor fornecedor;
-    private int quantidade;
-    
+    @Temporal(TemporalType.DATE)
+    private Calendar dataRegistro;
+   
 
     public Long getId() {
         return id;
@@ -38,13 +49,64 @@ public class Produto implements Serializable {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNomeProduto() {
+        return nomeProduto;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
     }
+
+    public Calendar getDataValidade() {
+        return dataValidade;
+    }
+
+    public void setDataValidade(Calendar dataValidade) {
+        this.dataValidade = dataValidade;
+    }
+
+    public String getUnidadeMedida() {
+        return unidadeMedida;
+    }
+
+    public void setUnidadeMedida(String unidadeMedida) {
+        this.unidadeMedida = unidadeMedida;
+    }
+
+    public int getReposicao() {
+        return reposicao;
+    }
+
+    public void setReposicao(int reposicao) {
+        this.reposicao = reposicao;
+    }
+
+    public int getQuantidadeInicial() {
+        return quantidadeInicial;
+    }
+
+    public void setQuantidadeInicial(int quantidadeInicial) {
+        this.quantidadeInicial = quantidadeInicial;
+    }
+
+    public int getQuantidadeFinal() {
+        return quantidadeFinal;
+    }
+
+    public void setQuantidadeFinal(int quantidadeFinal) {
+        this.quantidadeFinal = quantidadeFinal;
+    }
+
+    public Long getCodigoDeBarras() {
+        return codigoDeBarras;
+    }
+
+    public void setCodigoDeBarras(Long codigoDeBarras) {
+        this.codigoDeBarras = codigoDeBarras;
+    }
+
+    
+  
 
     public String getTipoProduto() {
         return tipoProduto;
@@ -70,14 +132,15 @@ public class Produto implements Serializable {
         this.fornecedor = fornecedor;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public Calendar getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setDataRegistro(Calendar dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
-    
+
+   
 
    
 

@@ -102,6 +102,7 @@ public class Facade implements IFacade {
     @Override
     public Escola getByIdEscola(Long id) throws BusinessException, ExceptionDAO {
         return escolaDao.getById(id);
+        
     }
     
     @Override
@@ -148,6 +149,14 @@ public class Facade implements IFacade {
         return fornecedorDao.getTodos();
     }
     
+     
+    public Fornecedor getUltimoFornecedores() throws ExceptionDAO {
+        
+        List<Fornecedor> listaFor = getTodosFornecedores();
+        
+        return listaFor.get(listaFor.size()-1);
+    }
+    
 //    @Override
 //    public Boolean realizarCadastraFornecedor(Long id,String nome, String cnpj, String rua, String cep, String numero, String bairro, String cidade, String estado) throws ExceptionDAO {
 //       return  fornecedorDao.realizarCadastraFornecedor(id,nome, cnpj, rua, cep, numero, bairro, cidade, estado);
@@ -191,15 +200,29 @@ public class Facade implements IFacade {
     }
     
     @Override
-    public void realizarCadastroProduto(Long id, String descricao, String tipoProduto, String composicaoProduto,int quantidade,Fornecedor f) throws ExceptionDAO {
-        produtoDao.realizarCadastro(id, descricao, tipoProduto, composicaoProduto,quantidade, f);
-    }
+    public void realizarCadastroProduto(Long id, String nomeProduto, Calendar dataValidade,
+            String unidadeMedida, int reposicao, int quantidadeInicial, int quantidadeFinal,
+            Long codigoDeBarras, String tipoProduto, String composicaoProduto,
+            Fornecedor f) throws ExceptionDAO {
+        produtoDao.realizarCadastro(id, nomeProduto, dataValidade, unidadeMedida, reposicao, quantidadeInicial, quantidadeFinal, codigoDeBarras, tipoProduto, composicaoProduto, f);
+                }
     
     @Override
     public Produto addItemProdutoDoEstoque(Long ip, String tipoProduto, String descricao, String composicao, int quantidade,Fornecedor f) throws ExceptionDAO {
         return produtoDao.addItemProdutoDoEstoque(ip, tipoProduto, descricao, composicao,quantidade, f);
     }
+    
+    public Produto getUltimoProduto() throws ExceptionDAO {
+        
+        List<Produto> listaProd = getTodosProdutos();
+        
+        return listaProd.get(listaProd.size()-1);
+    }
 
+     @Override
+    public Produto getProdutoPorCodigoBarras(int codigo) throws ExceptionDAO {
+        return produtoDao.getProdutoPorCodigoBarras(codigo);
+    }
 
     //-------------------------Funcionario
     @Override
@@ -267,6 +290,8 @@ public class Facade implements IFacade {
     public Boolean confirmaFuncionarioPorLogin(String login, String senha) throws ExceptionDAO, BusinessException {
        return funcionarioDao.confirmaFuncionarioPorLogin(login, senha);
     }
+
+   
 
     
 

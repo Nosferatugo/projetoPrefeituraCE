@@ -12,6 +12,7 @@ import br.com.controleDeEstoque.model.Produto;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.swing.JOptionPane;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -41,4 +42,20 @@ public class ProdutoDAO extends GenericDAO<Produto> implements IProdutoDAO {
         return lista;
     }
 
+    @Override
+    public Produto getProdutoPorCodigoBarras(int codigo) throws ExceptionDAO {
+        List<Produto> lista = null;
+        Produto p = new Produto();
+        lista = getTodos();
+        for (Produto produto : lista) {
+            if (produto.getCodigoDeBarras() != null) {
+                if (produto.getCodigoDeBarras() == codigo) {
+                    p = produto;
+                }else
+                    JOptionPane.showMessageDialog(null, "Código de Barras não encontrado");
+            }
+        }
+
+        return p;
+    }
 }

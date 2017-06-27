@@ -14,10 +14,10 @@ import java.util.List;
  *
  * @author Onismar
  */
-public interface IProdutoDAO extends IGenegicDAO<Produto>{
-    
+public interface IProdutoDAO extends IGenegicDAO<Produto> {
+
     public List<Produto> getProdutoPorNome(String nome) throws ExceptionDAO;
 
-    
-    
+    public Produto getProdutoPorCodigoBarras(int codigo) throws ExceptionDAO;
+
 }

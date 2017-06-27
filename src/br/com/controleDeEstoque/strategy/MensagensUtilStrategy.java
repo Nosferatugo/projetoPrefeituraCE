@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
  */
 public class MensagensUtilStrategy {
 
-    private static final String FILE_NAME = "br.com.map.config/mensagens";
+    private static final String FILE_NAME = "br.com.controleDeEstoque.config/mensagens";
     public static final String MSG_ERRO_SALVAR = "msg_erro_salvar";
     public static final String MSG_SUCESSO_SALVAR = "msg_sucesso_salvar";
     public static final String MSG_SELECIONE = "msg_selecione";
