@@ -205,7 +205,11 @@ public class TelaListar<T> extends javax.swing.JDialog {
         }
         if (controle.equals("fornecedor")){
             
-           
+            try {
+                facade.gerarTabelaFornecedor(jTableListar);
+            } catch (BusinessException ex) {
+                Logger.getLogger(TelaListar.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
         if (controle.equals("funcionario")){
