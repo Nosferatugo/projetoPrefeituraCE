@@ -18,11 +18,15 @@ import br.com.controleDeEstoque.model.Fornecedor;
 import br.com.controleDeEstoque.model.Produto;
 import br.com.controleDeEstoque.strategy.MensagensUtilStrategy;
 import br.com.controleDeEstoque.strategy.UtilitariosStrategy;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -116,5 +120,66 @@ public class ProdutoBusiness implements IProdutoBusiness {
        return produtoDao.getProdutoPorCodigoBarras(codigo);
     }
 
+    public void gerarTabelaProduto(JTable tabela) throws BusinessException {
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        Produto f = new Produto();
+
+        modelo = (DefaultTableModel) tabela.getModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Nome");
+        modelo.addColumn("Validade");
+        modelo.addColumn("Medida");
+        modelo.addColumn("Fornecedor");
+        modelo.addColumn("Quantidade");
+        modelo.addColumn("Data Registro");
+
+        //Definindo o tamanho das colunas
+        tabela.getColumnModel().getColumn(0).setPreferredWidth(5);
+        tabela.getColumnModel().getColumn(1).setPreferredWidth(130);
+        tabela.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tabela.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tabela.getColumnModel().getColumn(4).setPreferredWidth(120);
+        tabela.getColumnModel().getColumn(5).setPreferredWidth(70);
+        tabela.getColumnModel().getColumn(6).setPreferredWidth(50);
+        
+
+        //Definindo tamanho 0 a coluna ID
+//        tabela.getColumnModel().getColumn(0).setMinWidth(0);
+//        tabela.getColumnModel().getColumn(0).setPreferredWidth(0);
+//        tabela.getColumnModel().getColumn(0).setMaxWidth(0);
+
+        tabela.setRowHeight(25);
+        modelo.setNumRows(0);
+
+        List<Produto> listaProduto = new ArrayList<Produto>();
+
+        try {
+            listaProduto = getTodos();
+        } catch (Exception ex) {
+
+        }
+
+        if (!listaProduto.isEmpty()) {
+
+            for (int i = 0; i < listaProduto.size(); i++) {
+                Vector linha = new Vector();
+                linha.add(listaProduto.get(i).getId());
+                linha.add(listaProduto.get(i).getNomeProduto());
+                linha.add(listaProduto.get(i).getDataValidade());
+                linha.add(listaProduto.get(i).getUnidadeMedida());
+                linha.add(listaProduto.get(i).getFornecedor().getNome());
+                linha.add(listaProduto.get(i).getQuantidadeFinal());
+                linha.add(listaProduto.get(i).getDataRegistro().getTime());
+                modelo.addRow(linha);
+
+            }
+
+        }
+
+    }
+
+    
     
 }

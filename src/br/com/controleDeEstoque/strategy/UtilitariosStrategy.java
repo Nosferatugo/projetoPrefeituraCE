@@ -13,14 +13,23 @@ import br.com.controleDeEstoque.gui.CadastrarFuncionario;
 import br.com.controleDeEstoque.gui.CadastrarProduto;
 import br.com.controleDeEstoque.model.Escola;
 import br.com.controleDeEstoque.model.Contato;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sourceforge.barbecue.Barcode;
+import net.sourceforge.barbecue.BarcodeException;
+import net.sourceforge.barbecue.BarcodeFactory;
+import net.sourceforge.barbecue.output.OutputException;
 
 /**
  *
@@ -213,5 +222,32 @@ public class UtilitariosStrategy {
 
     }
 
+    public ImageIcon exibirCodigoDeBarras(String codigo){
+        
+         ImageIcon img =null;
+            Barcode barcode;
+        try {
+            barcode = BarcodeFactory.createCode128(codigo);
+            
+              barcode.setBarHeight(45);
+            barcode.setBarWidth(2);
+            
+            BufferedImage image = new BufferedImage(300, 100, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g = (Graphics2D) image.getGraphics();
+            
+            barcode.draw(g, 5, 20);
+            img = new ImageIcon(image);
+            
+
+        } catch (BarcodeException ex) {
+            Logger.getLogger(UtilitariosStrategy.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (OutputException ex) {
+            Logger.getLogger(UtilitariosStrategy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+          return img;
+       
+  
+    }
 
 }

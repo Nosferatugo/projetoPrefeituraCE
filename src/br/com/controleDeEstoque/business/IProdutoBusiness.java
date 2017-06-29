@@ -13,6 +13,7 @@ import br.com.controleDeEstoque.model.Fornecedor;
 import br.com.controleDeEstoque.model.Produto;
 import java.util.Calendar;
 import java.util.List;
+import javax.swing.JTable;
 
 /**
  *
@@ -38,6 +39,8 @@ public interface IProdutoBusiness {
     public Produto addItemProdutoDoEstoque(Long ip, String tipoProduto, String descricao, String composicao,int quantidade,Fornecedor f)throws ExceptionDAO;
 
     public Produto getProdutoPorCodigoBarras(int codigo) throws ExceptionDAO;
+    
+    public void gerarTabelaProduto (JTable tabela) throws BusinessException;
    
     }
 

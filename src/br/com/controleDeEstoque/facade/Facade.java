@@ -174,6 +174,11 @@ public class Facade implements IFacade {
 
    
     //---------------Produto
+    
+    public void gerarTabelaProduto(JTable tabela) throws BusinessException {
+        produtoDao.gerarTabelaProduto(tabela);
+    }
+    
     @Override
     public void salvarProduto(Produto p) throws ExceptionDAO {
         produtoDao.salvar(p);

@@ -5,19 +5,40 @@
  */
 package br.com.controleDeEstoque.telas;
 
+import br.com.controleDeEstoque.commom.exception.BusinessException;
+import br.com.controleDeEstoque.facade.Facade;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HugoNathan
  */
 public class TelaListarProdutos extends javax.swing.JDialog {
 
-    /**
-     * Creates new form TelaListarProdutos
-     */
+    public static String controle = "";
+    Facade facade = Facade.getInstance();
+    
     public TelaListarProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        TelaListarProdutos.controle = "produto";
         
+    }
+    
+    public Long recuperaId() {
+
+        Long id = null;
+        int linha = -1;
+        linha = jTableProdutos.getSelectedRow();
+
+        if (linha >= 0) {
+            id = (Long) jTableProdutos.getValueAt(linha, 0);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma linha");
+        }
+        return id;
     }
 
     /**
@@ -34,11 +55,16 @@ public class TelaListarProdutos extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableProdutos = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -46,7 +72,7 @@ public class TelaListarProdutos extends javax.swing.JDialog {
 
         jButton1.setText("BUSCAR");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -57,7 +83,7 @@ public class TelaListarProdutos extends javax.swing.JDialog {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableProdutos);
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -79,14 +105,12 @@ public class TelaListarProdutos extends javax.swing.JDialog {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 1, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 867, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 867, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -139,6 +163,19 @@ public class TelaListarProdutos extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if (controle.equals("produto")){
+            
+           
+            try {
+                facade.gerarTabelaProduto(jTableProdutos);
+            } catch (BusinessException ex) {
+                Logger.getLogger(TelaListarProdutos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -188,7 +225,7 @@ public class TelaListarProdutos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableProdutos;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
