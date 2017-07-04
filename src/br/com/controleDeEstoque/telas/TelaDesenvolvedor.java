@@ -62,7 +62,7 @@ public class TelaDesenvolvedor extends javax.swing.JDialog {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, 10));
 
         jLabel7.setText("Hugo Nathan");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, 10));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, 20));
 
         jButton1.setText("Sair");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

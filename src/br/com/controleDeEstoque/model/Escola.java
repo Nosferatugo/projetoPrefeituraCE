@@ -34,6 +34,17 @@ public class Escola implements Serializable {
     private Calendar dataCadastro;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Contato> contato;
+    private String nomeResponssavel;
+
+    public String getNomeResponssavel() {
+        return nomeResponssavel;
+    }
+
+    public void setNomeResponssavel(String nomeResponssavel) {
+        this.nomeResponssavel = nomeResponssavel;
+    }
+    
+    
 
     public Long getId() {
         return id;
