@@ -34,6 +34,8 @@ public interface IFacade {
             String cidade, String estado, List<Contato> listaContatos) throws BusinessException, ExceptionDAO;
 
     public void atualizarEscola(Escola e) throws BusinessException, ExceptionDAO;
+    
+      public void removerEscola(Escola e) throws ExceptionDAO;
 
     public Escola getByIdEscola(Long id) throws BusinessException, ExceptionDAO;
 
@@ -50,6 +52,8 @@ public interface IFacade {
     public void salvarFornecedor(Fornecedor f) throws ExceptionDAO;
 
     public void atualizarForncedor(Fornecedor f) throws ExceptionDAO;
+    
+    public void removerFornecedor(Fornecedor f) throws ExceptionDAO;
 
     public Fornecedor getByIdFornecedor(Long id) throws ExceptionDAO;
 
@@ -68,6 +72,8 @@ public interface IFacade {
     public void salvarProduto(Produto p) throws ExceptionDAO;
 
     public void atualizarProduto(Produto p) throws ExceptionDAO;
+    
+    public void removerProduto(Produto p) throws ExceptionDAO;
 
     public Produto getByIdProduto(Long id) throws ExceptionDAO;
 
@@ -88,6 +94,8 @@ public interface IFacade {
     public void salvarFuncionario(Funcionario f) throws BusinessException, ExceptionDAO;
 
     public void atualizarFuncionario(Funcionario f) throws BusinessException, ExceptionDAO;
+    
+    public void removerFuncionario(Funcionario f) throws ExceptionDAO;
 
     public Funcionario getByIdFuncionario(Long id) throws BusinessException, ExceptionDAO;
 

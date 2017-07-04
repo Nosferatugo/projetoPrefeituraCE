@@ -213,7 +213,11 @@ public class TelaListar<T> extends javax.swing.JDialog {
             
         }
         if (controle.equals("funcionario")){
-          
+           try {
+                facade.gerarTabelaFuncionario(jTableListar);
+            } catch (BusinessException ex) {
+                Logger.getLogger(TelaListar.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (controle.equals("produto")){
            
@@ -252,13 +256,13 @@ public class TelaListar<T> extends javax.swing.JDialog {
         }
         if (controle.equals("funcionario")){
             
-//            try {
-//                facade.gerarTelaEditarFuncionario(facade.getByIdFuncionario(recuperaId()));
-//            } catch (BusinessException ex) {
-//                Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (ExceptionDAO ex) {
-//                Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            try {
+                facade.gerarTelaEditarFuncionario(facade.getByIdFuncionario(recuperaId()));
+            } catch (BusinessException ex) {
+                Logger.getLogger(TelaListar.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExceptionDAO ex) {
+                Logger.getLogger(TelaListar.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
         

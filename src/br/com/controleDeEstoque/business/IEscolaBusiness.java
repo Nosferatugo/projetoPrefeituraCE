@@ -29,6 +29,8 @@ public interface IEscolaBusiness {
             String cidade, String estado, List<Contato> listaContatos) throws BusinessException, ExceptionDAO;
 
     public void atualizar(Escola e) throws BusinessException, ExceptionDAO;
+    
+     public void remover(Escola e) throws ExceptionDAO;
 
     public Escola getById(Long id) throws BusinessException, ExceptionDAO;
 

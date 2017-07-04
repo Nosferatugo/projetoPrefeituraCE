@@ -20,4 +20,5 @@ public interface IProdutoDAO extends IGenegicDAO<Produto> {
 
     public Produto getProdutoPorCodigoBarras(int codigo) throws ExceptionDAO;
 
+    public void remover(Produto p) throws ExceptionDAO;
 }

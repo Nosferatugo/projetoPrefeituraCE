@@ -30,6 +30,27 @@ public class EscolaDAO extends GenericDAO<Escola> implements IEscolaDAO {
     private EntityManager manager;
   
     @Override
+    public void remover(Escola t) throws ExceptionDAO {
+
+        manager = PersistenceUtil.getInstance();
+        
+        try {
+            
+            manager.getTransaction().begin();
+            manager.remove(manager.getReference(Escola.class, t.getId()));
+            manager.getTransaction().commit();
+            
+        } catch (Exception e) {
+            manager.getTransaction().rollback();
+            e.printStackTrace();
+            throw new ExceptionDAO("Erro ao salvar no banco de dados");
+        } finally {
+            manager.close();
+        }
+
+    }
+    
+    @Override
     public Escola getporNome(String nome) throws ExceptionDAO {
         Escola p = null;
         

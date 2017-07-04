@@ -39,37 +39,37 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EscolaBusiness implements IEscolaBusiness {
 
-    private IEscolaDAO clienteDao;
+    private IEscolaDAO escolaDao;
     
 
     public EscolaBusiness() {
-        clienteDao = new EscolaDAO();
+        escolaDao = new EscolaDAO();
     }
 
     @Override
     public void salvar(Escola e) throws BusinessException, ExceptionDAO {
 
-        clienteDao.salvar(e);
+        escolaDao.salvar(e);
     }
 
     @Override
     public void atualizar(Escola e) throws BusinessException, ExceptionDAO {
-        clienteDao.atualizar(e);
+        escolaDao.atualizar(e);
     }
 
     @Override
     public Escola getById(Long id) throws BusinessException, ExceptionDAO {
-        return clienteDao.getById(id);
+        return escolaDao.getById(id);
     }
 
     @Override
     public List<Escola> getTodos() throws BusinessException, ExceptionDAO {
-        return clienteDao.getTodos();
+        return escolaDao.getTodos();
     }
 
     @Override
     public Escola getporNome(String nome) throws BusinessException, ExceptionDAO {
-        return clienteDao.getporNome(nome);
+        return escolaDao.getporNome(nome);
     }
 
     @Override
@@ -196,6 +196,11 @@ public class EscolaBusiness implements IEscolaBusiness {
 
         ce.setVisible(true);
 
+    }
+
+    @Override
+    public void remover(Escola e) throws ExceptionDAO {
+        escolaDao.remover(e);
     }
 
 }

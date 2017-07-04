@@ -6,6 +6,7 @@
 package br.com.controleDeEstoque.telas;
 
 import br.com.controleDeEstoque.model.Produto;
+import br.com.controleDeEstoque.strategy.UtilitariosStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,9 @@ import java.util.List;
  */
 public class TelaSaídaProdutos extends javax.swing.JFrame {
 
-     public static List<Produto> listaItemProdutos = new ArrayList<>();
-     public static Produto p = null;
+    public static List<Produto> listaItemProdutos = new ArrayList<>();
+    public static Produto p = null;
+
     /**
      * Creates new form TelaSaídaProdutos
      */
@@ -184,7 +186,7 @@ public class TelaSaídaProdutos extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
+                        .addGap(113, 113, 113)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,7 +222,7 @@ public class TelaSaídaProdutos extends javax.swing.JFrame {
                                 .addGap(20, 20, 20)
                                 .addComponent(jLabel7)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -237,14 +239,15 @@ public class TelaSaídaProdutos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelCodigodeBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addComponent(jLabelCodigodeBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -287,9 +290,11 @@ public class TelaSaídaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-      if(p !=null){
-          jLabelCodigodeBarras.setText(p.getCodigoDeBarras().toString());
-      }
+        if (p != null) {
+//          jLabelCodigodeBarras.setText(p.getCodigoDeBarras().toString());
+            UtilitariosStrategy utilitario = new UtilitariosStrategy();
+            jLabelCodigodeBarras.setIcon(utilitario.exibirCodigoDeBarras(p.getCodigoDeBarras().toString()));
+        }
     }//GEN-LAST:event_formWindowGainedFocus
 
     /**

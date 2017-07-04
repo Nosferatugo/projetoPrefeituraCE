@@ -23,6 +23,8 @@ public interface IFuncionarioBusiness {
     public void salvar(Funcionario f) throws ExceptionDAO, BusinessException;
 
     public void atualizar(Funcionario f) throws ExceptionDAO, BusinessException;
+    
+    public void remover(Funcionario f) throws ExceptionDAO; 
 
     public Funcionario getById(Long id) throws ExceptionDAO, BusinessException;
 

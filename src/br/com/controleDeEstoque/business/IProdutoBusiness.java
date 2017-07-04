@@ -24,6 +24,8 @@ public interface IProdutoBusiness {
     public void salvar(Produto p) throws ExceptionDAO;
 
     public void atualizar(Produto p) throws ExceptionDAO;
+    
+    public void remover(Produto p) throws ExceptionDAO;
 
     public Produto getById(Long id) throws ExceptionDAO;
 

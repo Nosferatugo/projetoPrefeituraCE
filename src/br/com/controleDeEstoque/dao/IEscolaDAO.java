@@ -14,5 +14,6 @@ public interface IEscolaDAO extends IGenegicDAO<Escola>{
 
     public Escola getporNome(String cpf) throws ExceptionDAO;
    
+    public void remover(Escola t) throws ExceptionDAO;
     
 }

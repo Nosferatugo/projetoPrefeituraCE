@@ -88,7 +88,7 @@ public class ProdutoBusiness implements IProdutoBusiness {
         p.setFornecedor(f);
 
         if (id == null) {
-             p.setQuantidadeFinal(quantidadeInicial);
+            p.setQuantidadeFinal(quantidadeInicial);
             salvar(p);
             JOptionPane.showMessageDialog(null, MensagensUtilStrategy.getValor(MensagensUtilStrategy.MSG_SUCESSO_SALVAR, ""));
 
@@ -108,7 +108,7 @@ public class ProdutoBusiness implements IProdutoBusiness {
         p.setId(ip);
         p.setTipoProduto(tipoProduto);
         p.setComposicaoProduto(composicao);
-       // p.setDescricao(descricao);
+        // p.setDescricao(descricao);
         p.setQuantidadeInicial(quantidade);
         p.setFornecedor(f);
         return p;
@@ -117,11 +117,12 @@ public class ProdutoBusiness implements IProdutoBusiness {
 
     @Override
     public Produto getProdutoPorCodigoBarras(int codigo) throws ExceptionDAO {
-       return produtoDao.getProdutoPorCodigoBarras(codigo);
+        return produtoDao.getProdutoPorCodigoBarras(codigo);
     }
 
     public void gerarTabelaProduto(JTable tabela) throws BusinessException {
 
+        UtilitariosStrategy utilitaro = new UtilitariosStrategy();
         DefaultTableModel modelo = new DefaultTableModel();
         Produto f = new Produto();
 
@@ -143,13 +144,11 @@ public class ProdutoBusiness implements IProdutoBusiness {
         tabela.getColumnModel().getColumn(4).setPreferredWidth(120);
         tabela.getColumnModel().getColumn(5).setPreferredWidth(70);
         tabela.getColumnModel().getColumn(6).setPreferredWidth(50);
-        
 
         //Definindo tamanho 0 a coluna ID
 //        tabela.getColumnModel().getColumn(0).setMinWidth(0);
 //        tabela.getColumnModel().getColumn(0).setPreferredWidth(0);
 //        tabela.getColumnModel().getColumn(0).setMaxWidth(0);
-
         tabela.setRowHeight(25);
         modelo.setNumRows(0);
 
@@ -167,11 +166,15 @@ public class ProdutoBusiness implements IProdutoBusiness {
                 Vector linha = new Vector();
                 linha.add(listaProduto.get(i).getId());
                 linha.add(listaProduto.get(i).getNomeProduto());
-                linha.add(listaProduto.get(i).getDataValidade());
+                String data = utilitaro.pasarCalendarParaString(listaProduto.get(i).getDataValidade());
+//                linha.add(listaProduto.get(i).getDataValidade());
+                linha.add(data);
                 linha.add(listaProduto.get(i).getUnidadeMedida());
                 linha.add(listaProduto.get(i).getFornecedor().getNome());
                 linha.add(listaProduto.get(i).getQuantidadeFinal());
-                linha.add(listaProduto.get(i).getDataRegistro().getTime());
+                String data2 = utilitaro.pasarCalendarParaString(listaProduto.get(i).getDataRegistro());
+                linha.add(data2);
+//                linha.add(listaProduto.get(i).getDataRegistro().getTime());
                 modelo.addRow(linha);
 
             }
@@ -180,6 +183,9 @@ public class ProdutoBusiness implements IProdutoBusiness {
 
     }
 
-    
-    
+    @Override
+    public void remover(Produto p) throws ExceptionDAO {
+        produtoDao.remover(p);
+    }
+
 }

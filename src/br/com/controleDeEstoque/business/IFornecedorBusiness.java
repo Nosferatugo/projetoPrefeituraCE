@@ -21,6 +21,8 @@ public interface IFornecedorBusiness {
     
     public void atualizar(Fornecedor f) throws ExceptionDAO;
     
+    public void remover(Fornecedor f) throws ExceptionDAO; 
+    
     public Fornecedor getById (Long id) throws ExceptionDAO;
     
     public List<Fornecedor> getTodos() throws ExceptionDAO;

@@ -16,6 +16,8 @@ import java.util.List;
  */
 public interface IFuncionarioDAO extends IGenegicDAO<Funcionario>{
     
+     public void remover(Funcionario t) throws ExceptionDAO;
+     
     public void modificaStatus (Funcionario f, boolean status) throws ExceptionDAO;
     
     public List<Funcionario> autorizacaoDesconto (boolean status) throws ExceptionDAO;

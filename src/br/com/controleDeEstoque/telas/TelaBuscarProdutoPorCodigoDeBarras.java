@@ -8,6 +8,8 @@ package br.com.controleDeEstoque.telas;
 import br.com.controleDeEstoque.commom.exception.ExceptionDAO;
 import br.com.controleDeEstoque.facade.Facade;
 import br.com.controleDeEstoque.model.Produto;
+import br.com.controleDeEstoque.strategy.UtilitariosStrategy;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,6 +28,9 @@ public class TelaBuscarProdutoPorCodigoDeBarras extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    
+    
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,7 +91,7 @@ public class TelaBuscarProdutoPorCodigoDeBarras extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
          try {
-           if(jTextFieldCodigoDeBarras.equals("")){
+           if(!jTextFieldCodigoDeBarras.equals("")){
                TelaSaídaProdutos telasaida = null;
                  telasaida.p = fachada.getProdutoPorCodigoBarras(Integer.parseInt(jTextFieldCodigoDeBarras.getText()));
             this.dispose();

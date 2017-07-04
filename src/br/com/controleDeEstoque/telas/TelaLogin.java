@@ -5,11 +5,26 @@
  */
 package br.com.controleDeEstoque.telas;
 
+import br.com.controleDeEstoque.commom.exception.BusinessException;
+import br.com.controleDeEstoque.commom.exception.ExceptionDAO;
+import br.com.controleDeEstoque.facade.Facade;
+import br.com.controleDeEstoque.model.Funcionario;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HugoNathan
  */
 public class TelaLogin extends javax.swing.JFrame {
+
+    
+     private Facade fachada = Facade.getInstance();
+    public static List<Funcionario> listaFunc = new ArrayList();
 
     /**
      * Creates new form TelaLogin
@@ -28,28 +43,45 @@ public class TelaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jTextFieldLogin = new javax.swing.JTextField();
+        jPasswordField = new javax.swing.JPasswordField();
         jButtonCancelar = new javax.swing.JButton();
         jButtonEntrar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabelCofirmacaoLogin = new javax.swing.JLabel();
+        jLabelConfirmacaoSenha = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setText("Senha:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 140, 30));
+        jTextFieldLogin.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldLogin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldLoginFocusGained(evt);
+            }
+        });
+        getContentPane().add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 140, 30));
 
-        jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 140, 30));
+        jPasswordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPasswordField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPasswordFieldFocusGained(evt);
+            }
+        });
+        getContentPane().add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 140, 30));
 
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +113,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Gerenciamento Controle de Estoque");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+        getContentPane().add(jLabelCofirmacaoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 130, 20));
+        getContentPane().add(jLabelConfirmacaoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 110, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/controleDeEstoque/imagens/TelaLogin.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, 620, 370));
@@ -90,14 +124,62 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
-        TelaPrincipal telaPrincipal = new TelaPrincipal();
-        telaPrincipal.setVisible(true);
-        this.dispose();
+       
+        Funcionario func = new Funcionario();
+        try {
+            func = fachada.retornaFuncionarioPorLogin(jTextFieldLogin.getText());
+            if (func != null) {
+                
+               
+                 
+                if (func.getSenha().equals(jPasswordField.getText())) {
+                    TelaPrincipal telaPrincipal = new TelaPrincipal();
+                    telaPrincipal.setVisible(true);
+                    this.dispose();
+                }else {
+                jLabelConfirmacaoSenha.setForeground(Color.red);
+                jLabelConfirmacaoSenha.setText("Senha incorreta.. ");
+                JOptionPane.showMessageDialog(null, "Senha incorreta!! ");
+                }
+            }else{
+                
+                jLabelCofirmacaoLogin.setForeground(Color.red);
+                jLabelCofirmacaoLogin.setText("Login incorreto.. ");
+                JOptionPane.showMessageDialog(null, "Login não encontrado!! ");
+            }
+                
+        } catch (ExceptionDAO ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BusinessException ex) {
+            Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        
+        
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
           System.exit(0);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+        
+        TelaProcessamento processo = new TelaProcessamento(null, true);
+        processo.controle = "login";
+        processo.setVisible(true);
+        
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jTextFieldLoginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldLoginFocusGained
+      jLabelCofirmacaoLogin.setText(" ");
+    }//GEN-LAST:event_jTextFieldLoginFocusGained
+
+    private void jPasswordFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldFocusGained
+            jLabelConfirmacaoSenha.setText(" ");
+    }//GEN-LAST:event_jPasswordFieldFocusGained
 
     /**
      * @param args the command line arguments
@@ -143,7 +225,9 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabelCofirmacaoLogin;
+    private javax.swing.JLabel jLabelConfirmacaoSenha;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JTextField jTextFieldLogin;
     // End of variables declaration//GEN-END:variables
 }

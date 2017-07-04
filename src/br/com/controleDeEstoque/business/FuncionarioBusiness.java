@@ -112,13 +112,11 @@ public class FuncionarioBusiness implements IFuncionarioBusiness {
         System.out.println(id);
         if (id == null) {
             salvar(f);
-            
+
             JOptionPane.showMessageDialog(null, MensagensUtilStrategy.getValor(MensagensUtilStrategy.MSG_SUCESSO_SALVAR, "  "));
             cf.dispose();
-          
-            
 
-        } else   if (id != null){
+        } else if (id != null) {
 
             atualizar(f);
             JOptionPane.showMessageDialog(null, MensagensUtilStrategy.getValor(MensagensUtilStrategy.MSG_ALTERAR, "  "));
@@ -142,11 +140,19 @@ public class FuncionarioBusiness implements IFuncionarioBusiness {
 
         modelo.addColumn("Id");
         modelo.addColumn("Nome");
-        modelo.addColumn("Inscrição");
+        modelo.addColumn("CPF");
+        modelo.addColumn("Função");
+        modelo.addColumn("Usuário");
+        modelo.addColumn("Senha");
+        modelo.addColumn("Nível");
 
         //Definindo o tamanho das colunas
         tabela.getColumnModel().getColumn(1).setPreferredWidth(280);
         tabela.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(6).setPreferredWidth(100);
 
         //Definindo tamanho 0 a coluna ID
         tabela.getColumnModel().getColumn(0).setMinWidth(0);
@@ -169,8 +175,12 @@ public class FuncionarioBusiness implements IFuncionarioBusiness {
             for (int i = 0; i < listaFuncionario.size(); i++) {
                 Vector linha = new Vector();
                 linha.add(listaFuncionario.get(i).getId());
-                linha.add(listaFuncionario.get(i).getNome());
-                linha.add(listaFuncionario.get(i).getInscricao());
+                linha.add(listaFuncionario.get(i).getNomeFuncionario());
+                linha.add(listaFuncionario.get(i).getCpfFuncionario());
+                linha.add(listaFuncionario.get(i).getFuncaoFuncionario());
+                linha.add(listaFuncionario.get(i).getLogin());
+                linha.add(listaFuncionario.get(i).getSenha());
+                linha.add(listaFuncionario.get(i).getNivelAcesso());
                 modelo.addRow(linha);
 
             }
@@ -185,24 +195,19 @@ public class FuncionarioBusiness implements IFuncionarioBusiness {
         TelaCadastrarFuncionarios cf = new TelaCadastrarFuncionarios(null, true);
         UtilitariosStrategy fd = new UtilitariosStrategy();
 
-//        cf.jTextFieldNome.setText(f.getNome());
-//        cf.jTextFieldBairro.setText(f.getEndereco().getBairro());
-//        cf.boxEstado.setSelectedItem(f.getEndereco().getEstado());
-//        cf.jComboBoxEstadoCivil.setSelectedItem(f.getSexo());
-//        cf.jTextFieldCPF.setText(f.getCpf());
-//        cf.jTextFieldCEP.setText(f.getEndereco().getCep());
-//        cf.jTextFieldCidade.setText(f.getEndereco().getCidade());
-//        cf.jTextFieldNumeroDaRua.setText(f.getEndereco().getNumero());
-//        cf.jTextFieldOrgaoEmisor.setText(f.getRg().getOrgao());
-//        cf.jTextFieldRG.setText(f.getRg().getNumero());
-//        cf.jTextFieldRua.setText(f.getEndereco().getRua());
-//        cf.jComboBoxEstadoCivil.setSelectedItem(f.getEstadoCivil());
-//        cf.jFormattedTextFieldDataExpedição.setText(fd.pasarCalendarParaString(f.getRg().getDataExpedicao()));
-//        cf.jFormattedTextFieldDataDeNascimento.setText(fd.pasarCalendarParaString(f.getDataNascimento()));
-//        cf.jTextFieldInscricao.setText(f.getInscricao());
-//        cf.jTextFieldLogin.setText(f.getLogin());
-//        cf.jTextFieldSenha.setText(f.getSenha());
-//        cf.id = f.getId();
+        cf.jTextFieldNome.setText(f.getNomeFuncionario());
+        String nivel = String.valueOf(f.getNivelAcesso());
+        cf.jComboBoxNivelDeAcesso.setSelectedItem(nivel);
+        cf.jFormattedTextFieldCpf.setText(f.getCpfFuncionario());
+        cf.jComboBoxFuncao.setSelectedItem(f.getFuncaoFuncionario());
+        cf.jFormattedTextFieldContato.setText(f.getContatoFuncionario());
+        cf.jTextFieldUsuario.setText(f.getLogin());
+        cf.jTextFieldSenha.setText(f.getSenha());
+        cf.id = f.getId();
+
+
+        cf.funcao = "editar";
+       
 
         cf.setVisible(true);
 
@@ -232,6 +237,11 @@ public class FuncionarioBusiness implements IFuncionarioBusiness {
         }
 
         return status;
+    }
+
+    @Override
+    public void remover(Funcionario f) throws ExceptionDAO {
+       funcionarioDao.remover(f);
     }
 
 }

@@ -6,6 +6,7 @@
 package br.com.controleDeEstoque.dao;
 
 import br.com.controleDeEstoque.commom.dao.IGenegicDAO;
+import br.com.controleDeEstoque.commom.exception.ExceptionDAO;
 import br.com.controleDeEstoque.model.Fornecedor;
 import java.util.List;
 
@@ -15,6 +16,6 @@ import java.util.List;
  */
 public interface IFornecedorDAO extends IGenegicDAO<Fornecedor>{
     
-   
+   public void remover(Fornecedor t) throws ExceptionDAO;
     
 }

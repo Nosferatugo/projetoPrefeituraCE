@@ -99,6 +99,11 @@ public class Facade implements IFacade {
         escolaDao.atualizar(e);
     }
     
+     @Override
+    public void removerEscola(Escola e) throws ExceptionDAO {
+        escolaDao.remover(e);
+    }
+    
     @Override
     public Escola getByIdEscola(Long id) throws BusinessException, ExceptionDAO {
         return escolaDao.getById(id);
@@ -138,6 +143,12 @@ public class Facade implements IFacade {
     public void atualizarForncedor(Fornecedor f) throws ExceptionDAO {
         fornecedorDao.atualizar(f);
     }
+    
+    @Override
+    public void removerFornecedor(Fornecedor f) throws ExceptionDAO {
+        fornecedorDao.remover(f);
+    }
+
     
     @Override
     public Fornecedor getByIdFornecedor(Long id) throws ExceptionDAO {
@@ -187,6 +198,11 @@ public class Facade implements IFacade {
     @Override
     public void atualizarProduto(Produto p) throws ExceptionDAO {
         produtoDao.atualizar(p);
+    }
+    
+     @Override
+    public void removerProduto(Produto p) throws ExceptionDAO {
+       produtoDao.remover(p);
     }
     
     @Override
@@ -294,6 +310,11 @@ public class Facade implements IFacade {
      @Override
     public Boolean confirmaFuncionarioPorLogin(String login, String senha) throws ExceptionDAO, BusinessException {
        return funcionarioDao.confirmaFuncionarioPorLogin(login, senha);
+    }
+
+    @Override
+    public void removerFuncionario(Funcionario f) throws ExceptionDAO {
+        funcionarioDao.remover(f);
     }
 
    

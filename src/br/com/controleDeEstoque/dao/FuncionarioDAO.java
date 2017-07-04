@@ -25,6 +25,26 @@ public class FuncionarioDAO extends GenericDAO<Funcionario> implements IFunciona
     private EntityManagerFactory entityManagerFactory;
     private EntityManager manager;
 
+   @Override
+public void remover(Funcionario t) throws ExceptionDAO {
+
+        manager = PersistenceUtil.getInstance();
+        
+        try {
+            
+            manager.getTransaction().begin();
+            manager.remove(manager.getReference(Funcionario.class, t.getId()));
+            manager.getTransaction().commit();
+            
+        } catch (Exception e) {
+            manager.getTransaction().rollback();
+            e.printStackTrace();
+            throw new ExceptionDAO("Erro ao salvar no banco de dados");
+        } finally {
+            manager.close();
+        }
+
+    }
     @Override
     public void modificaStatus(Funcionario f, boolean status) throws ExceptionDAO {
         

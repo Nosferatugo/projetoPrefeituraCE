@@ -169,4 +169,9 @@ public class FornecedorBusiness implements IFornecedorBusiness {
 
     }
 
+    @Override
+    public void remover(Fornecedor f) throws ExceptionDAO {
+        fornecedorDao.remover(f);
+    }
+
 }

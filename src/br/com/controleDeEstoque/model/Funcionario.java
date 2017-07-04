@@ -31,19 +31,59 @@ import javax.persistence.TemporalType;
 public class Funcionario extends Pessoa implements Serializable{
 
     private String inscricao;
+    private String nomeFuncionario;
+    private String cpfFuncionario;
+    private String funcaoFuncionario;
+    private String contatoFuncionario;
+    private int nivelAcesso;
     private String login;
     private String senha;
     private boolean autorizarDesconto;
     private Double maxDesconto;
 
-    public String getInscricao() {
-        return inscricao;
-        
+    public String getNomeFuncionario() {
+        return nomeFuncionario;
     }
 
-    public void setInscricao(String inscricao) {
-        this.inscricao = inscricao;
+    public void setNomeFuncionario(String nomeFuncionario) {
+        this.nomeFuncionario = nomeFuncionario;
     }
+
+    public String getCpfFuncionario() {
+        return cpfFuncionario;
+    }
+
+    public void setCpfFuncionario(String cpfFuncionario) {
+        this.cpfFuncionario = cpfFuncionario;
+    }
+
+    public String getFuncaoFuncionario() {
+        return funcaoFuncionario;
+    }
+
+    public void setFuncaoFuncionario(String funcaoFuncionario) {
+        this.funcaoFuncionario = funcaoFuncionario;
+    }
+
+    public String getContatoFuncionario() {
+        return contatoFuncionario;
+    }
+
+    public void setContatoFuncionario(String contatoFuncionario) {
+        this.contatoFuncionario = contatoFuncionario;
+    }
+
+    public int getNivelAcesso() {
+        return nivelAcesso;
+    }
+
+    public void setNivelAcesso(int nivelAcesso) {
+        this.nivelAcesso = nivelAcesso;
+    }
+
+    
+    
+  
 
     public String getLogin() {
         return login;
@@ -61,29 +101,14 @@ public class Funcionario extends Pessoa implements Serializable{
         this.senha = senha;
     }
 
-    public boolean isAutorizarDesconto() {
-        return autorizarDesconto;
-    }
-
-    public void setAutorizarDesconto(boolean autorizarDesconto) {
-        this.autorizarDesconto = autorizarDesconto;
-    }
-   
-
-   
-
-    public Double getMaxDesconto() {
-        return maxDesconto;
-    }
-
-    public void setMaxDesconto(Double maxDesconto) {
-        this.maxDesconto = maxDesconto;
-    }
+  
 
     @Override
     public String toString() {
-        return "Funcionario{" + super.toString()+ "inscricao=" + inscricao + ", login=" + login + ", senha=" + senha + ", autorizarDesconto=" + autorizarDesconto + ", maxDesconto=" + maxDesconto + '}';
+        return "Funcionario{" + "inscricao=" + inscricao + ", nomeFuncionario=" + nomeFuncionario + ", cpfFuncionario=" + cpfFuncionario + ", funcaoFuncionario=" + funcaoFuncionario + ", contatoFuncionario=" + contatoFuncionario + ", nivelAcesso=" + nivelAcesso + ", login=" + login + ", senha=" + senha + ", autorizarDesconto=" + autorizarDesconto + ", maxDesconto=" + maxDesconto + '}';
     }
+
+    
 
  
 

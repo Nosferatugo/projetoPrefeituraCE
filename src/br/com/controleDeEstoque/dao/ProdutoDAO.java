@@ -29,6 +29,27 @@ public class ProdutoDAO extends GenericDAO<Produto> implements IProdutoDAO {
     private EntityManager manager;
 
     @Override
+public void remover(Produto p) throws ExceptionDAO {
+
+        manager = PersistenceUtil.getInstance();
+        
+        try {
+            
+            manager.getTransaction().begin();
+            manager.remove(manager.getReference(Produto.class, p.getId()));
+            manager.getTransaction().commit();
+            
+        } catch (Exception e) {
+            manager.getTransaction().rollback();
+            e.printStackTrace();
+            throw new ExceptionDAO("Erro ao salvar no banco de dados");
+        } finally {
+            manager.close();
+        }
+
+    }
+
+    @Override
     public List<Produto> getProdutoPorNome(String nome) throws ExceptionDAO {
         List<Produto> lista = null;
         manager = PersistenceUtil.getInstance();
@@ -51,8 +72,7 @@ public class ProdutoDAO extends GenericDAO<Produto> implements IProdutoDAO {
             if (produto.getCodigoDeBarras() != null) {
                 if (produto.getCodigoDeBarras() == codigo) {
                     p = produto;
-                }else
-                    JOptionPane.showMessageDialog(null, "Código de Barras não encontrado");
+                }
             }
         }
 
