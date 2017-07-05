@@ -25,7 +25,7 @@ public interface IEscolaBusiness {
 
     public void salvar(Escola e) throws BusinessException, ExceptionDAO;
 
-    public void realizarCadastro(Long id, String nome,TipoDeEscola tipoEscola,String rua, String numeroDaRua, String bairro, String cep,
+    public void realizarCadastro(Long id, String nome,String nomeResposavel,String tipoEscola,String rua, String numeroDaRua, String bairro, String cep,
             String cidade, String estado, List<Contato> listaContatos) throws BusinessException, ExceptionDAO;
 
     public void atualizar(Escola e) throws BusinessException, ExceptionDAO;

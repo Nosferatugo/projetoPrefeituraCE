@@ -73,7 +73,7 @@ public class EscolaBusiness implements IEscolaBusiness {
     }
 
     @Override
-    public void realizarCadastro(Long id, String nome,TipoDeEscola tipoEscola,String rua, String numeroDaRua, String bairro, String cep,
+    public void realizarCadastro(Long id, String nome, String nomeResposavel,String tipoEscola,String rua, String numeroDaRua, String bairro, String cep,
             String cidade, String estado, List<Contato> listaContatos) throws BusinessException, ExceptionDAO {
 
           UtilitariosStrategy utilitarios = new UtilitariosStrategy();
@@ -89,9 +89,10 @@ public class EscolaBusiness implements IEscolaBusiness {
         endereco.setCep(cep);
 
         Escola e = new Escola();
-
+// no banco de dados ta int
         e.setId(id);
-        e.setNome(nome);      
+        e.setNome(nome);  
+        e.setNomeResponssavel(nomeResposavel);
         e.setTipoDeEscola(tipoEscola);
         e.setDataCadastro(Calendar.getInstance());
         e.setContato(listaContatos);

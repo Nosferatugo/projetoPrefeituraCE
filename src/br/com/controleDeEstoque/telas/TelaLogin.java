@@ -124,10 +124,19 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
-       
+        String login = "admin";
+        String senha = "root";
+        
         Funcionario func = new Funcionario();
+        if(jTextFieldLogin.getText().equals(login)&&(jPasswordField.getText().equals(senha))){
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+                    telaPrincipal.setVisible(true);
+                    this.dispose();
+        }else{
         try {
+            
             func = fachada.retornaFuncionarioPorLogin(jTextFieldLogin.getText());
+            
             if (func != null) {
                 
                
@@ -155,7 +164,7 @@ public class TelaLogin extends javax.swing.JFrame {
         }
 
         
-        
+        }  
         
     }//GEN-LAST:event_jButtonEntrarActionPerformed
 

@@ -183,9 +183,10 @@ public class TelaListarProdutos extends javax.swing.JDialog {
                 System.out.println("Produto: " +PRODUTO.getNomeProduto());
                 System.out.println("---- "+PRODUTO.getId());
                 
-                TelaDetalhesDoProduto telaProduto = new TelaDetalhesDoProduto(null, rootPaneCheckingEnabled, PRODUTO, FORNECEDOR);
-                telaProduto.setVisible(true);
-                dispose();
+//                TelaDetalhesDoProduto telaProduto = new TelaDetalhesDoProduto(null, rootPaneCheckingEnabled, PRODUTO, FORNECEDOR);
+                    TelaDetalhesDoProduto telaProduto = new TelaDetalhesDoProduto(null, rootPaneCheckingEnabled, PRODUTO, FORNECEDOR);
+                    telaProduto.setVisible(true);
+                    dispose();
                 
             
 

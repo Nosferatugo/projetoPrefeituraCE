@@ -17,7 +17,7 @@ public class ConexaoBD {
     public Statement stm;
     public ResultSet rs;
     private String driver = "org.postgresql.Driver";
-    private String caminho = "jdbc:postgresql://localhost:5432/AnimaRock";
+    private String caminho = "jdbc:postgresql://localhost:5432/controleEstoque1";
     private String usuario = "postgres";
     private String senha = "1234";
     public Connection con;

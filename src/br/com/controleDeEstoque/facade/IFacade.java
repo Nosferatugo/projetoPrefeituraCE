@@ -30,7 +30,7 @@ public interface IFacade {
     //Escola
     public void salvarEscola(Escola e) throws BusinessException, ExceptionDAO;
 
-    public void realizarCadastroDaEscola(Long id, String nome,TipoDeEscola tipoEscola,String rua, String numeroDaRua, String bairro, String cep,
+    public void realizarCadastroDaEscola(Long id, String nome,String nomeResposavel,String tipoEscola,String rua, String numeroDaRua, String bairro, String cep,
             String cidade, String estado, List<Contato> listaContatos) throws BusinessException, ExceptionDAO;
 
     public void atualizarEscola(Escola e) throws BusinessException, ExceptionDAO;

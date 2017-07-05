@@ -170,7 +170,7 @@ public class ProdutoBusiness implements IProdutoBusiness {
 //                linha.add(listaProduto.get(i).getDataValidade());
                 linha.add(data);
                 linha.add(listaProduto.get(i).getUnidadeMedida());
-                linha.add(listaProduto.get(i).getFornecedor().getNome());
+                linha.add(listaProduto.get(i).getFornecedor());
                 linha.add(listaProduto.get(i).getQuantidadeFinal());
                 String data2 = utilitaro.pasarCalendarParaString(listaProduto.get(i).getDataRegistro());
                 linha.add(data2);

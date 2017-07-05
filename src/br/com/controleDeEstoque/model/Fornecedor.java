@@ -85,10 +85,17 @@ public class Fornecedor implements Serializable {
         }
         return true;
     }
+    
+    
+
+//    @Override
+//    public String toString() {
+//        return "br.com.map.model.Fornecedor[ id=" + id + " ]";
+//    }
 
     @Override
     public String toString() {
-        return "br.com.map.model.Fornecedor[ id=" + id + " ]";
+        return this.getNome();
     }
     
 }

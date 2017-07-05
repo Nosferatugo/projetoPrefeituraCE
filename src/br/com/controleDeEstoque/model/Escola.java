@@ -27,7 +27,7 @@ public class Escola implements Serializable {
     private Long id;
     private String nome;
     private String descricao;
-    private TipoDeEscola tipoDeEscola;
+    private String tipoDeEscola;
     @ManyToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
     @Temporal(TemporalType.DATE)
@@ -70,13 +70,15 @@ public class Escola implements Serializable {
         this.descricao = descricao;
     }
 
-    public TipoDeEscola getTipoDeEscola() {
+    public String getTipoDeEscola() {
         return tipoDeEscola;
     }
 
-    public void setTipoDeEscola(TipoDeEscola tipoDeEscola) {
+    public void setTipoDeEscola(String tipoDeEscola) {
         this.tipoDeEscola = tipoDeEscola;
     }
+
+   
 
     public Endereco getEndereco() {
         return endereco;

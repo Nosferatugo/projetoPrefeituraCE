@@ -88,10 +88,10 @@ public class Facade implements IFacade {
     }
     
     @Override
-    public void realizarCadastroDaEscola(Long id, String nome,TipoDeEscola tipoEscola,String rua, String numeroDaRua, String bairro, String cep,
+    public void realizarCadastroDaEscola(Long id, String nome,String nomeResposavel,String tipoEscola,String rua, String numeroDaRua, String bairro, String cep,
             String cidade, String estado, List<Contato> listaContatos) throws BusinessException, ExceptionDAO {
         
-        escolaDao.realizarCadastro(id, nome, tipoEscola, rua, numeroDaRua, bairro, cep, cidade, estado, listaContatos);
+        escolaDao.realizarCadastro(id, nome,nomeResposavel, tipoEscola, rua, numeroDaRua, bairro, cep, cidade, estado, listaContatos);
     }
     
     @Override
